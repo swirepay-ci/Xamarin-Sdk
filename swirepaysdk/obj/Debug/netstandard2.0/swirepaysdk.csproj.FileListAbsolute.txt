@@ -1,0 +1,16 @@
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\obj\Debug\netstandard2.0\swirepaysdk.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\obj\Debug\netstandard2.0\App.xaml.g.cs
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\obj\Debug\netstandard2.0\MainPage.xaml.g.cs
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\obj\Debug\netstandard2.0\View\PaymentLinkPage.xaml.g.cs
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\obj\Debug\netstandard2.0\swirepaysdk.AssemblyInfoInputs.cache
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\obj\Debug\netstandard2.0\swirepaysdk.AssemblyInfo.cs
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\obj\Debug\netstandard2.0\swirepaysdk.csproj.CoreCompileInputs.cache
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\bin\Debug\netstandard2.0\swirepaysdk.deps.json
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\bin\Debug\netstandard2.0\swirepaysdk.dll
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\bin\Debug\netstandard2.0\ref\swirepaysdk.dll
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\bin\Debug\netstandard2.0\swirepaysdk.pdb
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\obj\Debug\netstandard2.0\XamlC.stamp
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\obj\Debug\netstandard2.0\swirepaysdk.dll
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\obj\Debug\netstandard2.0\ref\swirepaysdk.dll
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\obj\Debug\netstandard2.0\swirepaysdk.pdb
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\swirepaysdk\swirepaysdk\obj\Debug\netstandard2.0\swirepaysdk.csproj.AssemblyReference.cache
