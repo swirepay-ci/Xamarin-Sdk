@@ -33,25 +33,40 @@ namespace swirepaysdk.Droid
             Button btnCreateAccount = FindViewById<Button>(Resource.Id.btnAccount);
             Button btnPaymentMethod = FindViewById<Button>(Resource.Id.btnPaymentMethod);
             Button btnInvoice = FindViewById<Button>(Resource.Id.btnInvoice);
+            Button btnSubscriptionButton = FindViewById<Button>(Resource.Id.btnSubscriptionButton);
+            Button btnPaymentButton = FindViewById<Button>(Resource.Id.btnPaymentButton);
 
             btnPayment.Click += (sender, e) =>
             {
                 StartActivityForResult(new Intent(this, typeof(PaymentLinkActivity)), 99);
             };
 
-            btnCreateAccount.Click += (sender, e) => {
+            btnCreateAccount.Click += (sender, e) =>
+            {
 
-                StartActivityForResult(new Intent(this,typeof(CreateAccountActivity)),99);
+                StartActivityForResult(new Intent(this, typeof(CreateAccountActivity)), 99);
             };
 
-            btnPaymentMethod.Click += (sender, e) => {
+            btnPaymentMethod.Click += (sender, e) =>
+            {
 
                 StartActivityForResult(new Intent(this, typeof(PaymentMethodActivity)), 99);
             };
 
-            btnInvoice.Click += (sender, e) => {
+            btnInvoice.Click += (sender, e) =>
+            {
 
                 StartActivityForResult(new Intent(this, typeof(InvoicePaymentActivity)), 99);
+            };
+
+            btnSubscriptionButton.Click += (sender, e) =>
+            {
+                StartActivityForResult(new Intent(this, typeof(SubscriptionButtonActivity)), 99);
+            };
+
+            btnPaymentButton.Click += (sender, e) =>
+            {
+                StartActivityForResult(new Intent(this, typeof(PaymentButtonActivity)), 99);
             };
         }
 

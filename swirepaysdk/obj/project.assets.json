@@ -2062,11 +2062,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-android\\swirepaysdk\\swirepaysdk.csproj",
+      "projectUniqueName": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk\\swirepaysdk.csproj",
       "projectName": "swirepaysdk",
-      "projectPath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-android\\swirepaysdk\\swirepaysdk.csproj",
+      "projectPath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk\\swirepaysdk.csproj",
       "packagesPath": "C:\\Users\\Swirepay 01\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-android\\swirepaysdk\\obj\\",
+      "outputPath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"

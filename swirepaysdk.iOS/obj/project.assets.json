@@ -1909,11 +1909,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-android\\swirepaysdk.iOS\\swirepaysdk.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk.iOS\\swirepaysdk.iOS.csproj",
       "projectName": "swirepaysdk.iOS",
-      "projectPath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-android\\swirepaysdk.iOS\\swirepaysdk.iOS.csproj",
+      "projectPath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk.iOS\\swirepaysdk.iOS.csproj",
       "packagesPath": "C:\\Users\\Swirepay 01\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-android\\swirepaysdk.iOS\\obj\\",
+      "outputPath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
@@ -1934,8 +1934,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-android\\swirepaysdk\\swirepaysdk.csproj": {
-              "projectPath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-android\\swirepaysdk\\swirepaysdk.csproj"
+            "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk\\swirepaysdk.csproj": {
+              "projectPath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk\\swirepaysdk.csproj"
             }
           }
         }

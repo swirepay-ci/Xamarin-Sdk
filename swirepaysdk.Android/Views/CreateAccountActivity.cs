@@ -1,23 +1,16 @@
 ﻿using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Util;
-using swirepaysdk.Droid.Utility;
-using swirepaysdk.Model;
-using swirepaysdk.Model.Payments;
+using Newtonsoft.Json;
+using swirepaysdk.Model.Account;
 using swirepaysdk.Service;
-using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace swirepaysdk.Droid.Views
 {
     [Activity(Label = "CreateAccountActivity")]
-    public class CreateAccountActivity : BaseActivity
+    public class CreateAccountActivity : BaseActivity<AccountRedirect>
     {
         SwirepaySdk swirepaysdk;
 
@@ -33,9 +26,19 @@ namespace swirepaysdk.Droid.Views
         private async Task createAccount()
         {
 
-            BaseActivity.BaseConstructor(this,"sp-account-id");
+            BaseActivity<AccountRedirect>.param_id = "sp-account-id";
 
             loadUrl(Constants.paymentUrl+"connect?key="+ Base64.EncodeToString(Encoding.ASCII.GetBytes(Constants.apiKey),Base64Flags.Default));
+        }
+    }
+
+    public class AccountRedirect : AbstractRedirect
+    {
+        public override void OnRedirect(OnLinkSelectedHandler handler, string id)
+        {
+            string result = JsonConvert.SerializeObject(new Account(id));
+
+            handler(result);
         }
     }
 }

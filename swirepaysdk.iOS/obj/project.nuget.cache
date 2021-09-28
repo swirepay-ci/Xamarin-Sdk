@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Si4FdITWfEkmD0xfQYkP2mfLYyLwphr5ReHuiscZMnUq6h+wEAh6ICM7YauqWaBKdAx0b0DoakukbmNx0ykfSA==",
+  "dgSpecHash": "nqhj88Fxi/AzEhW8DaGHjKrnfFqHb7Fp6OLJvDGZ4zA0ON+hekmEqrR+iG9hoDUeitt9hn4ysAQr+yBRvqXHDA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-android\\swirepaysdk.iOS\\swirepaysdk.iOS.csproj",
+  "projectFilePath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk.iOS\\swirepaysdk.iOS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Swirepay 01\\.nuget\\packages\\acr.userdialogs\\7.1.0.514\\acr.userdialogs.7.1.0.514.nupkg.sha512",
     "C:\\Users\\Swirepay 01\\.nuget\\packages\\btprogresshud\\1.3.1\\btprogresshud.1.3.1.nupkg.sha512",

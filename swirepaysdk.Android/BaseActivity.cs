@@ -1,31 +1,28 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.Net;
 using Android.OS;
 using Android.Util;
 using Android.Webkit;
 using Android.Widget;
 using Newtonsoft.Json;
-using swirepaysdk.Droid.Utility;
 using swirepaysdk.Droid.Views;
 using swirepaysdk.Model.Account;
 using swirepaysdk.Service;
 using System.Threading.Tasks;
 using Xamarin.Forms.Platform.Android;
+using static swirepaysdk.Droid.AbstractRedirect;
 
 namespace swirepaysdk.Droid
 {
     [Activity(Label = "BaseActivity")]
-    public abstract class BaseActivity : FormsAppCompatActivity
+    public abstract class BaseActivity<T> : FormsAppCompatActivity where T :AbstractRedirect,new()
     {
 
         public WebView webView;
         static ProgressBar progress;
         public static string param_id = "";
         public static string result_id = "";
-        private static Activity activity;
-
-        public delegate void OnLinkSelectedHandler(string result);
+        private static T tInstance = new T();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -37,12 +34,6 @@ namespace swirepaysdk.Droid
         }
 
         //public abstract void onRedirect(string url);
-
-        public static void BaseConstructor(FormsAppCompatActivity activityInstance, string paramId)
-        {
-            activity = activityInstance;
-            param_id = paramId;
-        }
 
         public void loadUrl(string url)
         {
@@ -65,7 +56,6 @@ namespace swirepaysdk.Droid
 
         public class WebViewClientClass : WebViewClient
         {
-
             private OnLinkSelectedHandler linkSelected;
 
             public WebViewClientClass(OnLinkSelectedHandler handler)
@@ -81,14 +71,14 @@ namespace swirepaysdk.Droid
                 var uri = request.Url;
                 var id = uri.GetQueryParameter(param_id);
 
-                if (id != null)
-                {
-                    result_id = id;
-                }
+                //if (id != null)
+                //{
+                //    result_id = id;
+                //}
 
                 if (isThisFinalUrl(localUrl))
                 {
-                    onRedirect(linkSelected, result_id);
+                    tInstance.OnRedirect(linkSelected, id);
                     return true;
                 }
 
@@ -116,25 +106,32 @@ namespace swirepaysdk.Droid
             Finish();
         }
 
-        public static async Task onRedirect(OnLinkSelectedHandler linkSelected,string id)
-        {
-            string result = null;
-            if (activity.GetType() == typeof(PaymentLinkActivity))
-            {
-                result = await ApiService.getService().checkStatus(id);
-            }else if(activity.GetType() == typeof(CreateAccountActivity))
-            {
-                result = JsonConvert.SerializeObject(new Account(id));
-            }else if(activity.GetType() == typeof(PaymentMethodActivity))
-            {
-                result = await ApiService.getService().fetchSetupSession(id);
-            }else if(activity.GetType() == typeof(InvoicePaymentActivity))
-            {
-                result = await ApiService.getService().checkInvoiceStatus(id);
-            }
+        //public static async Task onRedirect(OnLinkSelectedHandler linkSelected,string id)
+        //{
+        //    string result = null;
+        //    if (activity.GetType() == typeof(PaymentLinkActivity))
+        //    {
+        //        result = await swirepaySdk.checkStatus(id);
+        //    }else if(activity.GetType() == typeof(CreateAccountActivity))
+        //    {
+        //        result = JsonConvert.SerializeObject(new Account(id));
+        //    }else if(activity.GetType() == typeof(PaymentMethodActivity))
+        //    {
+        //        result = await swirepaySdk.fetchSetupSession(id);
+        //    }else if(activity.GetType() == typeof(InvoicePaymentActivity))
+        //    {
+        //        result = await swirepaySdk.checkInvoiceStatus(id);
+        //    }else if(activity.GetType() == typeof(SubscriptionButtonActivity))
+        //    {
+        //        result = await swirepaySdk.getSubscriptionButton(id);
+        //    }
+        //    else if (activity.GetType() == typeof(PaymentButtonActivity))
+        //    {
+        //        result = await swirepaySdk.getPaymentButton(id);
+        //    }
 
-            linkSelected(result);
-        }
+        //    linkSelected(result);
+        //}
 
         public static bool isThisFinalUrl(string url)
         {
@@ -161,5 +158,12 @@ namespace swirepaysdk.Droid
               Toast.MakeText(this, "Click back again to exit!", ToastLength.Short).Show();
             }
         }
+    }
+
+    public abstract class AbstractRedirect
+    {
+        public abstract void OnRedirect(OnLinkSelectedHandler handler,string id);
+
+        public delegate void OnLinkSelectedHandler(string result);
     }
 }

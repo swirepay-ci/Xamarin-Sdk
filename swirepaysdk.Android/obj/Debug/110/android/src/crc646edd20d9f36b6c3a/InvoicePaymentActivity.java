@@ -2,7 +2,7 @@ package crc646edd20d9f36b6c3a;
 
 
 public class InvoicePaymentActivity
-	extends crc644fd200ef23cefd5e.BaseActivity
+	extends crc644fd200ef23cefd5e.BaseActivity_1
 	implements
 		mono.android.IGCUserPeer
 {

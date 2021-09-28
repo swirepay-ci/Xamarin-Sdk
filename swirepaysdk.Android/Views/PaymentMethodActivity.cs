@@ -1,23 +1,14 @@
 ﻿using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Util;
-using swirepaysdk.Droid.Utility;
-using swirepaysdk.Model;
-using swirepaysdk.Model.Payments;
 using swirepaysdk.Service;
-using System;
-using System.Collections.Generic;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace swirepaysdk.Droid.Views
 {
     [Activity(Label = "PaymentMethodActivity")]
-    public class PaymentMethodActivity : BaseActivity
+    public class PaymentMethodActivity : BaseActivity<PaymentMethodRedirect>
     {
         SwirepaySdk swirepaysdk;
 
@@ -33,9 +24,24 @@ namespace swirepaysdk.Droid.Views
         private async Task createPaymentMethod()
         {
 
-            BaseActivity.BaseConstructor(this, "sp-session-id");
+            BaseActivity<Redirect>.param_id = "sp-session-id";
 
             loadUrl(Constants.paymentUrl+ "setup-session?key=" + Base64.EncodeToString(Encoding.ASCII.GetBytes(Constants.apiKey),Base64Flags.Default));
+        }
+    }
+
+    public class PaymentMethodRedirect : AbstractRedirect
+    {
+        public async Task callAsync(OnLinkSelectedHandler handler, string id)
+        {
+            string result = await SwirepaySdk.getInstance(Constants.apiKey).fetchSetupSession(id);
+
+            handler(result);
+        }
+
+        public override void OnRedirect(OnLinkSelectedHandler handler, string id)
+        {
+            callAsync(handler, id);
         }
     }
 }

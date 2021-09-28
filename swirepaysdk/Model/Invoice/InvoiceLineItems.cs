@@ -4,7 +4,7 @@ using System.Text;
 
 namespace swirepaysdk.Model.Invoice
 {
-    class InvoiceLineItems
+    public class InvoiceLineItems
     {
         
     public int amount { get; set; }

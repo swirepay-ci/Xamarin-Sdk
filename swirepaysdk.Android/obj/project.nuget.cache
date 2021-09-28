@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IKR0r7TAkyfYcxnSoYWeszL+o6kl7WdzdlMqwr+405R102FYwNEYBGiNoa2df2un2YUIpxN1bhTAwWChW+2Osw==",
+  "dgSpecHash": "1UiKgPUbXzGwHZW9Alxg01HjTm9zURFkX/BDObn4Bt1w4bAQ5I/yWl81kDKor8yZMVGxzZYH28wKbjPMJz22QQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-android\\swirepaysdk.Android\\swirepaysdk.Android.csproj",
+  "projectFilePath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk.Android\\swirepaysdk.Android.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Swirepay 01\\.nuget\\packages\\acr.userdialogs\\7.1.0.514\\acr.userdialogs.7.1.0.514.nupkg.sha512",
     "C:\\Users\\Swirepay 01\\.nuget\\packages\\andhud\\1.4.2\\andhud.1.4.2.nupkg.sha512",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oKTQRUAaGGkV/QUnl+1LRlMrz7qVVu5VsL4VuOD0d6D7WGDHnTO8yn8S5BUL+3MEniOI23Zb+NfFEnrXK2L4Xg==",
+  "dgSpecHash": "nb1qTwH6H9HrksG7Khamaq5tCLxDNqaaGXtNDnviEyrd0rcMJ6EE+SXDnocRSHHHL2jfKxZu3jrwLsWk5Wu+sA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-android\\swirepaysdk\\swirepaysdk.csproj",
+  "projectFilePath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk\\swirepaysdk.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Swirepay 01\\.nuget\\packages\\acr.userdialogs\\7.1.0.514\\acr.userdialogs.7.1.0.514.nupkg.sha512",
     "C:\\Users\\Swirepay 01\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",

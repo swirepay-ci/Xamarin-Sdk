@@ -1,21 +1,16 @@
 ﻿using Android.App;
-using Android.Content;
 using Android.OS;
-using swirepaysdk.Droid.Utility;
 using swirepaysdk.Model;
 using swirepaysdk.Model.Payments;
 using swirepaysdk.Service;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace swirepaysdk.Droid.Views
 {
     [Activity(Label = "PaymentLinkActivity")]
-    public class PaymentLinkActivity : BaseActivity
+    public class PaymentLinkActivity : BaseActivity<Redirect>
     {
         SwirepaySdk swirepaysdk;
 
@@ -40,9 +35,24 @@ namespace swirepaysdk.Droid.Views
             var result = await swirepaysdk.fetchPaymentLink(paymentRequest);
             PaymentLink paymentLink = (PaymentLink)Convert.ChangeType(result.entity, typeof(PaymentLink));
 
-            BaseActivity.BaseConstructor(this, "sp-payment-link");
+            BaseActivity<Redirect>.param_id = "sp-payment-link";
 
             loadUrl(paymentLink.link);
+        }
+    }
+
+    public class Redirect : AbstractRedirect
+    {
+        public async Task callAsync(OnLinkSelectedHandler handler, string id)
+        {
+            string result = await SwirepaySdk.getInstance(Constants.apiKey).checkStatus(id);
+
+            handler(result);
+        }
+
+        public override void OnRedirect(OnLinkSelectedHandler handler, string id)
+        {
+            callAsync(handler,id);
         }
     }
 }

@@ -3,10 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:vm="clr-namespace:swirepaysdk.Model"
              x:Class="swirepaysdk.MainPage">
 
-    <ContentPage.BindingContext>
-        <vm:MainViewModel/>
-    </ContentPage.BindingContext>
-    
     <StackLayout>
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
             <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
@@ -21,8 +17,7 @@
                 </FormattedString>
             </Label.FormattedText>
         </Label>
-        <Button Text="Goto Payment Link" Command="{Binding gotoPaymentLink}"/>
-        
+
     </StackLayout>
 
 </ContentPage>
