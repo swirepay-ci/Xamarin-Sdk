@@ -42,6 +42,10 @@
       "frameworks": {
         "xamarinios10": {
           "dependencies": {
+            "Plugin.LocalNotification": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
             "Xamarin.Essentials": {
               "target": "Package",
               "version": "[1.6.1, )"
@@ -69,7 +73,7 @@
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk\\swirepaysdk.csproj",
-        "projectName": "swirepaysdk",
+        "projectName": "Xamarin.Swirepay.Sdk",
         "projectPath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk\\swirepaysdk.csproj",
         "packagesPath": "C:\\Users\\Swirepay 01\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\Swirepay 01\\AndroidStudioProjects\\Xamarin\\xamarin-sdk\\swirepaysdk\\obj\\",
@@ -105,10 +109,6 @@
         "netstandard2.0": {
           "targetAlias": "netstandard2.0",
           "dependencies": {
-            "Acr.UserDialogs": {
-              "target": "Package",
-              "version": "[7.1.0.514, )"
-            },
             "NETStandard.Library": {
               "suppressParent": "All",
               "target": "Package",
@@ -118,6 +118,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.1, )"
+            },
+            "Plugin.LocalNotification": {
+              "target": "Package",
+              "version": "[9.0.0, )"
             },
             "Refit": {
               "target": "Package",
@@ -133,11 +137,11 @@
             },
             "Xamarin.Essentials": {
               "target": "Package",
-              "version": "[1.6.1, )"
+              "version": "[1.7.0, )"
             },
             "Xamarin.Forms": {
               "target": "Package",
-              "version": "[5.0.0.2012, )"
+              "version": "[5.0.0.2125, )"
             }
           },
           "imports": [

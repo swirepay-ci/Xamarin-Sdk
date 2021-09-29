@@ -8,9 +8,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.swirepay.sdk" android:installLocation="auto">
   <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="30" />
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.INTERNET" />
-  <application android:label="swirepaysdk.Android" android:theme="@style/MainTheme" android:name="android.app.Application" android:allowBackup="true" android:icon="@mipmap/icon" android:debuggable="true" android:extractNativeLibs="true">
+  <application android:label="Swirepay_Sdk" android:theme="@style/MainTheme" android:name="android.app.Application" android:allowBackup="true" android:icon="@mipmap/icon" android:debuggable="true" android:extractNativeLibs="true">
     <activity android:configChanges="orientation|smallestScreenSize|screenLayout|screenSize|uiMode" android:icon="@mipmap/icon" android:label="swirepaysdk" android:theme="@style/MainTheme" android:name="crc644fd200ef23cefd5e.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
@@ -23,6 +24,19 @@
     <activity android:label="PaymentLinkActivity" android:name="crc646edd20d9f36b6c3a.PaymentLinkActivity" />
     <activity android:label="PaymentMethodActivity" android:name="crc646edd20d9f36b6c3a.PaymentMethodActivity" />
     <activity android:label="SubscriptionButtonActivity" android:name="crc646edd20d9f36b6c3a.SubscriptionButtonActivity" />
+    <receiver android:enabled="true" android:label="Plugin LocalNotification Reboot complete Receiver" android:name="crc64df999be563077fc4.BootReceiver">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <category android:name="android.intent.category.HOME" />
+      </intent-filter>
+    </receiver>
+    <receiver android:enabled="true" android:exported="false" android:label="Plugin LocalNotification Action Receiver" android:name="plugin.LocalNotification.NotificationActionReceiver" />
+    <receiver android:enabled="true" android:exported="false" android:label="Plugin LocalNotification Scheduled Alarm Receiver" android:name="plugin.LocalNotification.ScheduledAlarmReceiver">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <category android:name="android.intent.category.HOME" />
+      </intent-filter>
+    </receiver>
     <service android:name="crc64396a3fe5f8138e3f.KeepAliveService" />
     <receiver android:enabled="true" android:exported="false" android:label="Essentials Battery Broadcast Receiver" android:name="crc64a0e0a82d0db9a07d.BatteryBroadcastReceiver" />
     <receiver android:enabled="true" android:exported="false" android:label="Essentials Energy Saver Broadcast Receiver" android:name="crc64a0e0a82d0db9a07d.EnergySaverBroadcastReceiver" />

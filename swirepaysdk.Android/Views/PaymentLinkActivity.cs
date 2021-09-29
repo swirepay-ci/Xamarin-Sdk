@@ -1,5 +1,7 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
+using Android.Util;
 using swirepaysdk.Model;
 using swirepaysdk.Model.Payments;
 using swirepaysdk.Service;
@@ -18,7 +20,7 @@ namespace swirepaysdk.Droid.Views
         {
             base.OnCreate(savedInstanceState);
 
-           swirepaysdk = SwirepaySdk.getInstance(Constants.apiKey);
+           swirepaysdk = SwirepaySdk.getInstance();
 
             getPaymentLink();
         }
@@ -30,14 +32,24 @@ namespace swirepaysdk.Droid.Views
             var paymentMethods = new List<string>();
             paymentMethods.Add("CARD");
 
+            SuccessResponse<PaymentLink> result=new SuccessResponse<PaymentLink>();
             PaymentRequest paymentRequest = new PaymentRequest("200", "USD", "", "Email", "2021-09-24T12:00:00", paymentMethods, customer);
+            try
+            {
+                result = await swirepaysdk.fetchPaymentLink(paymentRequest);
+                PaymentLink paymentLink = (PaymentLink)Convert.ChangeType(result.entity, typeof(PaymentLink));
 
-            var result = await swirepaysdk.fetchPaymentLink(paymentRequest);
-            PaymentLink paymentLink = (PaymentLink)Convert.ChangeType(result.entity, typeof(PaymentLink));
+                BaseActivity<Redirect>.param_id = "sp-payment-link";
 
-            BaseActivity<Redirect>.param_id = "sp-payment-link";
+                loadUrl(paymentLink.link);
+            }
+            catch (KeyNotInitializedException)
+            {
+                SetResult(Result.Canceled, new Intent()
+               .PutExtra("Result", result.message));
 
-            loadUrl(paymentLink.link);
+                Finish();
+            }
         }
     }
 
@@ -45,7 +57,7 @@ namespace swirepaysdk.Droid.Views
     {
         public async Task callAsync(OnLinkSelectedHandler handler, string id)
         {
-            string result = await SwirepaySdk.getInstance(Constants.apiKey).checkStatus(id);
+            string result = await SwirepaySdk.getInstance().checkStatus(id);
 
             handler(result);
         }

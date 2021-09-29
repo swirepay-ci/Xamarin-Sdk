@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Util;
 using swirepaysdk.Service;
@@ -10,13 +11,9 @@ namespace swirepaysdk.Droid.Views
     [Activity(Label = "PaymentMethodActivity")]
     public class PaymentMethodActivity : BaseActivity<PaymentMethodRedirect>
     {
-        SwirepaySdk swirepaysdk;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
-            swirepaysdk = SwirepaySdk.getInstance(Constants.apiKey);
 
             createPaymentMethod();
         }
@@ -26,7 +23,17 @@ namespace swirepaysdk.Droid.Views
 
             BaseActivity<Redirect>.param_id = "sp-session-id";
 
-            loadUrl(Constants.paymentUrl+ "setup-session?key=" + Base64.EncodeToString(Encoding.ASCII.GetBytes(Constants.apiKey),Base64Flags.Default));
+            if (!string.IsNullOrEmpty(Constants.apiKey))
+            {
+                loadUrl(Constants.paymentUrl + "setup-session?key=" + Base64.EncodeToString(Encoding.ASCII.GetBytes(Constants.apiKey), Base64Flags.Default));
+            }
+            else
+            {
+                SetResult(Result.Canceled, new Intent()
+                 .PutExtra("Result", "Key not initialized!"));
+
+               Finish();
+            }
         }
     }
 
@@ -34,7 +41,7 @@ namespace swirepaysdk.Droid.Views
     {
         public async Task callAsync(OnLinkSelectedHandler handler, string id)
         {
-            string result = await SwirepaySdk.getInstance(Constants.apiKey).fetchSetupSession(id);
+            string result = await SwirepaySdk.getInstance().fetchSetupSession(id);
 
             handler(result);
         }

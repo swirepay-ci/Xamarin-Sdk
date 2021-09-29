@@ -1,12 +1,10 @@
 ﻿using Newtonsoft.Json;
-using Refit;
 using swirepaysdk.Model;
 using swirepaysdk.Model.PaymentButton;
 using swirepaysdk.Model.Payments;
 using swirepaysdk.Model.Plan;
 using swirepaysdk.Model.SubscriptionButton;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,27 +14,27 @@ namespace swirepaysdk.Service
 {
     public class SwirepaySdk
     {
-        private static string apiKey { get; set; }
+        private static string apiKey;
+        private static string apiUrl;
         private static SwirepaySdk swirepaySdk;
 
-        public static SwirepaySdk getInstance(string apiKey)
+        public static SwirepaySdk getInstance()
         {
-            initSdk(apiKey);
-
             if (swirepaySdk == null)
                 swirepaySdk = new SwirepaySdk();
 
             return swirepaySdk;
         }
 
-        public static void initSdk(string key)
+        public static void initSdk(string key,string url)
         {
             apiKey = key;
+            apiUrl = url;
         }
 
         public async Task<SuccessResponse<PaymentLink>> fetchPaymentLink(PaymentRequest paymentRequest) 
         {
-            if(apiKey==null)
+            if ( String.IsNullOrEmpty(apiKey))
                 throw new KeyNotInitializedException();
 
             HttpClient client = new HttpClient();
@@ -47,7 +45,7 @@ namespace swirepaysdk.Service
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             try
             {
-                HttpResponseMessage response = await client.PostAsync(Constants.stagingUrl + "v1/payment-link", content);
+                HttpResponseMessage response = await client.PostAsync(apiUrl + "v1/payment-link", content);
 
                 if (response != null)
                 {
@@ -65,13 +63,13 @@ namespace swirepaysdk.Service
 
         public async Task<string> checkStatus(string paymentLinkGid)
         {
-            if (apiKey == null)
+            if (String.IsNullOrEmpty(apiKey))
                 throw new KeyNotInitializedException();
 
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("x-api-key", apiKey);
 
-            HttpResponseMessage response = await client.GetAsync(Constants.stagingUrl + "v1/payment-link/" + paymentLinkGid);
+            HttpResponseMessage response = await client.GetAsync(apiUrl + "v1/payment-link/" + paymentLinkGid);
 
             if (response != null)
             {
@@ -84,13 +82,13 @@ namespace swirepaysdk.Service
 
         public async Task<string> fetchSetupSession(string setupId)
         {
-            if (apiKey == null)
+            if (String.IsNullOrEmpty(apiKey))
                 throw new KeyNotInitializedException();
 
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("x-api-key", apiKey);
 
-            HttpResponseMessage response = await client.GetAsync(Constants.stagingUrl + "v1/setup-session/" + setupId);
+            HttpResponseMessage response = await client.GetAsync(apiUrl + "v1/setup-session/" + setupId);
 
             if (response != null)
             {
@@ -102,13 +100,13 @@ namespace swirepaysdk.Service
 
         public async Task<string> checkInvoiceStatus(string invoiceGid)
         {
-            if (apiKey == null)
+            if (String.IsNullOrEmpty(apiKey))
                 throw new KeyNotInitializedException();
 
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("x-api-key", apiKey);
 
-            HttpResponseMessage response = await client.GetAsync(Constants.stagingUrl + "v1/invoice-link/" + invoiceGid);
+            HttpResponseMessage response = await client.GetAsync(apiUrl + "v1/invoice-link/" + invoiceGid);
 
             if (response != null)
             {
@@ -120,7 +118,7 @@ namespace swirepaysdk.Service
 
         public async Task<SuccessResponse<SubscriptionButton>> createPlan(PlanRequest planRequest)
         {
-            if (apiKey == null)
+            if (String.IsNullOrEmpty(apiKey))
                 throw new KeyNotInitializedException();
 
             HttpClient client = new HttpClient();
@@ -130,7 +128,7 @@ namespace swirepaysdk.Service
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             try
             {
-                HttpResponseMessage response = await client.PostAsync(Constants.stagingUrl + "v1/plan", content);
+                HttpResponseMessage response = await client.PostAsync(apiUrl + "v1/plan", content);
 
                 if (response != null)
                 {
@@ -170,7 +168,7 @@ namespace swirepaysdk.Service
 
         public async Task<SuccessResponse<SubscriptionButton>> createSubscriptionButton(SubscriptionButtonRequest subscriptionButtonRequest)
         {
-            if (apiKey == null)
+            if (String.IsNullOrEmpty(apiKey))
                 throw new KeyNotInitializedException();
 
             HttpClient client = new HttpClient();
@@ -180,7 +178,7 @@ namespace swirepaysdk.Service
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             try
             {
-                HttpResponseMessage response = await client.PostAsync(Constants.stagingUrl + "v1/subscription-button", content);
+                HttpResponseMessage response = await client.PostAsync(apiUrl + "v1/subscription-button", content);
 
                 if (response != null)
                 {
@@ -200,13 +198,13 @@ namespace swirepaysdk.Service
    
         public async Task<string> getSubscriptionButton(string buttonGid)
         {
-            if (apiKey == null)
+            if (String.IsNullOrEmpty(apiKey))
                 throw new KeyNotInitializedException();
 
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("x-api-key", apiKey);
 
-            HttpResponseMessage response = await client.GetAsync(Constants.stagingUrl + "v1/subscription-button/" + buttonGid);
+            HttpResponseMessage response = await client.GetAsync(apiUrl + "v1/subscription-button/" + buttonGid);
 
             if (response != null)
             {
@@ -218,7 +216,7 @@ namespace swirepaysdk.Service
 
         public async Task<SuccessResponse<PaymentButton>> createPaymentButton(PaymentButtonRequest paymentButtonRequest)
         {
-            if (apiKey == null)
+            if (String.IsNullOrEmpty(apiKey))
                 throw new KeyNotInitializedException();
 
             HttpClient client = new HttpClient();
@@ -228,7 +226,7 @@ namespace swirepaysdk.Service
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             try
             {
-                HttpResponseMessage response = await client.PostAsync(Constants.stagingUrl + "v1/payment-button", content);
+                HttpResponseMessage response = await client.PostAsync(apiUrl + "v1/payment-button", content);
 
                 if (response != null)
                 {
@@ -249,13 +247,13 @@ namespace swirepaysdk.Service
         
         public async Task<string> getPaymentButton(string buttonGid)
         {
-            if (apiKey == null)
+            if ( String.IsNullOrEmpty(apiKey))
                 throw new KeyNotInitializedException();
 
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("x-api-key", apiKey);
 
-            HttpResponseMessage response = await client.GetAsync(Constants.stagingUrl + "v1/payment-button/" + buttonGid);
+            HttpResponseMessage response = await client.GetAsync(apiUrl + "v1/payment-button/" + buttonGid);
 
             if (response != null)
             {

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "swirepaysdk.Android", "swir
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "swirepaysdk.iOS", "swirepaysdk.iOS\swirepaysdk.iOS.csproj", "{C435265E-9DCC-4DDF-8688-AE299858F703}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "swirepaysdk", "swirepaysdk\swirepaysdk.csproj", "{26D8DC3F-DC93-46BA-9FCB-B326AC8C2325}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "swirepaysdk", "swirepaysdk\swirepaysdk.csproj", "{26D8DC3F-DC93-46BA-9FCB-B326AC8C2325}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

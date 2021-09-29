@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using swirepaysdk.Service;
 using System.Threading.Tasks;
@@ -14,17 +15,26 @@ namespace swirepaysdk.Droid.Views
         {
             base.OnCreate(savedInstanceState);
 
-            swirepaysdk = SwirepaySdk.getInstance(Constants.apiKey);
+            swirepaysdk = SwirepaySdk.getInstance();
 
             createInvoicePayment();
         }
 
         private async Task createInvoicePayment()
         {
-
             BaseActivity<Redirect>.param_id = "sp-invoice-link";
 
-            loadUrl(Constants.paymentUrl+ "invoice-link/" + "invoicelink-02f9c3ade85746a28007d6fe44efdc3a");
+            if (string.IsNullOrEmpty(Constants.apiKey))
+            {
+                loadUrl(Constants.paymentUrl + "invoice-link/" + "invoicelink-02f9c3ade85746a28007d6fe44efdc3a");
+            }
+            else
+            {
+             SetResult(Result.Canceled, new Intent()
+              .PutExtra("Result", "Key not initialized!"));
+
+             Finish();
+            }
         }
     }
 
@@ -32,7 +42,7 @@ namespace swirepaysdk.Droid.Views
     {
         public async Task callAsync(OnLinkSelectedHandler handler, string id)
         {
-            string result = await SwirepaySdk.getInstance(Constants.apiKey).checkInvoiceStatus(id);
+            string result = await SwirepaySdk.getInstance().checkInvoiceStatus(id);
 
             handler(result);
         }

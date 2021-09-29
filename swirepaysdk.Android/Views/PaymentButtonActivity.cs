@@ -1,4 +1,5 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.OS;
 using swirepaysdk.Model.PaymentButton;
 using swirepaysdk.Service;
@@ -17,7 +18,7 @@ namespace swirepaysdk.Droid.Views
         {
             base.OnCreate(savedInstanceState);
 
-            swirepaysdk = SwirepaySdk.getInstance(Constants.apiKey);
+            swirepaysdk = SwirepaySdk.getInstance();
 
             createPaymentButton();
         }
@@ -34,12 +35,22 @@ namespace swirepaysdk.Droid.Views
             paymentMethods.Add("CARD");
             request.paymentMethodType = paymentMethods;
 
-            var result = await swirepaysdk.createPaymentButton(request);
-            PaymentButton paymentButton = (PaymentButton)Convert.ChangeType(result.entity, typeof(PaymentButton));
+            try {
 
-            BaseActivity<Redirect>.param_id = "sp-payment-button";
+                var result = await swirepaysdk.createPaymentButton(request);
+                PaymentButton paymentButton = (PaymentButton)Convert.ChangeType(result.entity, typeof(PaymentButton));
 
-            loadUrl(paymentButton.link);
+                BaseActivity<Redirect>.param_id = "sp-payment-button";
+
+                loadUrl(paymentButton.link);
+            }
+            catch(KeyNotInitializedException e)
+            {
+                SetResult(Result.Canceled, new Intent()
+               .PutExtra("Result", "Key not initialized!"));
+
+                Finish();
+            }
         }
     }
 
@@ -47,7 +58,7 @@ namespace swirepaysdk.Droid.Views
     {
         public async Task callAsync(OnLinkSelectedHandler handler, string id)
         {
-            string result = await SwirepaySdk.getInstance(Constants.apiKey).getPaymentButton(id);
+            string result = await SwirepaySdk.getInstance().getPaymentButton(id);
 
             handler(result);
         }

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>swirepaysdk</id>
+    <version>1.0.0</version>
+    <authors>swirepaysdk</authors>
+    <description>Package Description</description>
+    <repository type="Public" />
+    <dependencies>
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="Acr.UserDialogs" version="7.1.0.514" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.1" exclude="Build,Analyzers" />
+        <dependency id="Plugin.LocalNotification" version="9.0.0" exclude="Build,Analyzers" />
+        <dependency id="Refit" version="6.0.94" exclude="Build,Analyzers" />
+        <dependency id="System.Collections" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="System.Collections.NonGeneric" version="4.3.0" exclude="Build,Analyzers" />
+        <dependency id="Xamarin.Essentials" version="1.7.0" exclude="Build,Analyzers" />
+        <dependency id="Xamarin.Forms" version="5.0.0.2125" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\xamarin-sdk\swirepaysdk\bin\Release\netstandard2.0\swirepaysdk.dll" target="lib\netstandard2.0\swirepaysdk.dll" />
+  </files>
+</package>

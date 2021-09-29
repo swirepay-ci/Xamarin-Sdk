@@ -15,7 +15,7 @@ namespace swirepaysdk.Model.SubscriptionButton
         public int planQuantity{get;set;}
         public string planStartDate{get;set;}
         public string planTotalPayments{get;set;}
-        public string redirectUri = Constants.baseUrl;
+        public string redirectUri { get; set; }
         public string couponGid{get;set;}
         public List<string> taxRates{get;set;}
         public string name{get;set;}

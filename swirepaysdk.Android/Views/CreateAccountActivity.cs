@@ -18,7 +18,7 @@ namespace swirepaysdk.Droid.Views
         {
             base.OnCreate(savedInstanceState);
 
-            swirepaysdk = SwirepaySdk.getInstance(Constants.apiKey);
+            swirepaysdk = SwirepaySdk.getInstance();
 
             createAccount();
         }

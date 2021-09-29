@@ -25,7 +25,7 @@ namespace swirepaysdk.Droid.Views
         {
             base.OnCreate(savedInstanceState);
 
-            swirepaysdk = SwirepaySdk.getInstance(Constants.apiKey);
+            swirepaysdk = SwirepaySdk.getInstance();
 
             createSubscriptionButton();
         }
@@ -40,12 +40,22 @@ namespace swirepaysdk.Droid.Views
             planRequest.description = "Test description";
             planRequest.name = "Test";
 
-            var result = await swirepaysdk.createPlan(planRequest);
-            SubscriptionButton subscription = (SubscriptionButton)Convert.ChangeType(result.entity, typeof(SubscriptionButton));
+            try
+            {
+                var result = await swirepaysdk.createPlan(planRequest);
+                SubscriptionButton subscription = (SubscriptionButton)Convert.ChangeType(result.entity, typeof(SubscriptionButton));
 
-            BaseActivity<Redirect>.param_id = "sp-subscription-button";
+                BaseActivity<Redirect>.param_id = "sp-subscription-button";
 
-            loadUrl(subscription.link);
+                loadUrl(subscription.link);
+            }
+            catch (KeyNotInitializedException e)
+            {
+                SetResult(Result.Canceled, new Intent()
+               .PutExtra("Result", "Key not initialized!"));
+
+                Finish();
+            }
         }
     }
 
@@ -53,7 +63,7 @@ namespace swirepaysdk.Droid.Views
     {
         public async Task callAsync(OnLinkSelectedHandler handler, string id)
         {
-            string result = await SwirepaySdk.getInstance(Constants.apiKey).getSubscriptionButton(id);
+            string result = await SwirepaySdk.getInstance().getSubscriptionButton(id);
 
             handler(result);
         }

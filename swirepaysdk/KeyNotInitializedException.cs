@@ -4,7 +4,7 @@ using System.Text;
 
 namespace swirepaysdk
 {
-    class KeyNotInitializedException:Exception
+    public class KeyNotInitializedException:Exception
     {
     }
 }

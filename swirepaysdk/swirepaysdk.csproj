@@ -3,6 +3,16 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>Swirepay Technologies Pvt Ltd</Company>
+    <Product>Swirepay</Product>
+    <NeutralLanguage>en</NeutralLanguage>
+    <RepositoryType>Public</RepositoryType>
+    <PackageId>Xamarin.Swirepay.Sdk</PackageId>
+    <Authors>Swirepay</Authors>
+    <PackageTags>Swirepay,Xamarin,Sdk,</PackageTags>
+    <Description>Swirepay sdk REST APIs' are resource-oriented URLs that accept JSON-encoded request bodies, return JSON-encoded responses.</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -11,12 +21,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Plugin.LocalNotification" Version="9.0.0" />
     <PackageReference Include="Refit" Version="6.0.94" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
     <PackageReference Include="System.Collections.NonGeneric" Version="4.3.0" />
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2012" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.6.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2125" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\swirepay-android\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>

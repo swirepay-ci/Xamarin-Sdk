@@ -4,10 +4,11 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Acr.UserDialogs;
-using Android.Widget;
 using Android.Content;
 using swirepaysdk.Droid.Views;
 using Xamarin.Forms.Platform.Android;
+using Android.Widget;
+using swirepaysdk.Service;
 
 namespace swirepaysdk.Droid
 {
@@ -23,18 +24,24 @@ namespace swirepaysdk.Droid
 
             UserDialogs.Init(this);
 
+            SwirepaySdk.initSdk("",Constants.stagingUrl);
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
 
             resultText = FindViewById<TextView>(Resource.Id.tvResult);
             responseText = FindViewById<TextView>(Resource.Id.tvResponse);
+            AndroidX.AppCompat.Widget.Toolbar toolbar = FindViewById<AndroidX.AppCompat.Widget.Toolbar>(Resource.Id.toolbar);
             Button btnPayment = FindViewById<Button>(Resource.Id.btnPayment);
             Button btnCreateAccount = FindViewById<Button>(Resource.Id.btnAccount);
             Button btnPaymentMethod = FindViewById<Button>(Resource.Id.btnPaymentMethod);
             Button btnInvoice = FindViewById<Button>(Resource.Id.btnInvoice);
             Button btnSubscriptionButton = FindViewById<Button>(Resource.Id.btnSubscriptionButton);
             Button btnPaymentButton = FindViewById<Button>(Resource.Id.btnPaymentButton);
+
+            SetSupportActionBar(toolbar);
+            SupportActionBar.Title = "Android SDK";
 
             btnPayment.Click += (sender, e) =>
             {
