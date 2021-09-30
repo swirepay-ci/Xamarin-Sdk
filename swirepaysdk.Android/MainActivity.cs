@@ -24,7 +24,7 @@ namespace swirepaysdk.Droid
 
             UserDialogs.Init(this);
 
-            SwirepaySdk.initSdk("",Constants.stagingUrl);
+            SwirepaySdk.initSdk(Constants.apiKey,Constants.stagingUrl);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);

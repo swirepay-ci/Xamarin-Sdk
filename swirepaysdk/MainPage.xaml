@@ -18,6 +18,8 @@
             </Label.FormattedText>
         </Label>
 
+        <Button x:Name="btnPaymentLink" Text="PaymentLink" Clicked="OnPaymentLink" />
+        
     </StackLayout>
 
 </ContentPage>

@@ -52,7 +52,7 @@
 
 	/* 5: Mono.Android.dll */
 	/* uncompressed_file_size */
-	.long	2176000
+	.long	2175488
 	/* loaded */
 	.byte	0
 	/* data */
@@ -484,7 +484,7 @@
 
 	/* 53: swirepaysdk.Android.dll */
 	/* uncompressed_file_size */
-	.long	435712
+	.long	435200
 	/* loaded */
 	.byte	0
 	/* data */
@@ -493,7 +493,7 @@
 
 	/* 54: swirepaysdk.dll */
 	/* uncompressed_file_size */
-	.long	48640
+	.long	51712
 	/* loaded */
 	.byte	0
 	/* data */

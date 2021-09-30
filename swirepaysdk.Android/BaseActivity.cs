@@ -4,11 +4,6 @@ using Android.OS;
 using Android.Util;
 using Android.Webkit;
 using Android.Widget;
-using Newtonsoft.Json;
-using swirepaysdk.Droid.Views;
-using swirepaysdk.Model.Account;
-using swirepaysdk.Service;
-using System.Threading.Tasks;
 using Xamarin.Forms.Platform.Android;
 using static swirepaysdk.Droid.AbstractRedirect;
 

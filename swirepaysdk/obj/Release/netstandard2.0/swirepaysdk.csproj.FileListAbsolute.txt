@@ -13,3 +13,4 @@ C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\xamarin-sdk\swirepaysdk\obj\R
 C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\xamarin-sdk\swirepaysdk\obj\Release\netstandard2.0\ref\swirepaysdk.dll
 C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\xamarin-sdk\swirepaysdk\obj\Release\netstandard2.0\swirepaysdk.pdb
 C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\xamarin-sdk\swirepaysdk\obj\Release\netstandard2.0\swirepaysdk.csproj.AssemblyReference.cache
+C:\Users\Swirepay 01\AndroidStudioProjects\Xamarin\xamarin-sdk\swirepaysdk\obj\Release\netstandard2.0\PaymentPage.xaml.g.cs

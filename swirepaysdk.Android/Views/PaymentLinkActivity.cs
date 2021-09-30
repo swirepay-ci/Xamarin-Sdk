@@ -31,6 +31,7 @@ namespace swirepaysdk.Droid.Views
 
             var paymentMethods = new List<string>();
             paymentMethods.Add("CARD");
+            paymentMethods.Add("ACH");
 
             SuccessResponse<PaymentLink> result=new SuccessResponse<PaymentLink>();
             PaymentRequest paymentRequest = new PaymentRequest("200", "USD", "", "Email", "2021-09-24T12:00:00", paymentMethods, customer);
