@@ -33,8 +33,10 @@ namespace swirepaysdk.Droid.Views
             paymentMethods.Add("CARD");
             paymentMethods.Add("ACH");
 
+            string currencyCode = CurrencyType.USD.ToString();
+
             SuccessResponse<PaymentLink> result=new SuccessResponse<PaymentLink>();
-            PaymentRequest paymentRequest = new PaymentRequest("200", "USD", "", "Email", "2021-09-24T12:00:00", paymentMethods, customer);
+            PaymentRequest paymentRequest = new PaymentRequest("200",currencyCode,"", "Email", "2021-09-24T12:00:00", paymentMethods, customer);
             try
             {
                 result = await swirepaysdk.fetchPaymentLink(paymentRequest);

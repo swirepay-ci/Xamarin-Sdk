@@ -5,6 +5,8 @@ using swirepaysdk.Model.Payments;
 using swirepaysdk.Model.Plan;
 using swirepaysdk.Model.SubscriptionButton;
 using System;
+using System.Buffers.Text;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +17,8 @@ namespace swirepaysdk.Service
     public class SwirepaySdk
     {
         private static string apiKey;
-        private static string apiUrl;
+        private static string BaseUrl;
+        private static string PaymentUrl;
         private static SwirepaySdk swirepaySdk;
 
         public static SwirepaySdk getInstance()
@@ -26,10 +29,11 @@ namespace swirepaysdk.Service
             return swirepaySdk;
         }
 
-        public static void initSdk(string key,string url)
+        public static void initSdk(string key,string baseUrl,string paymentUrl)
         {
             apiKey = key;
-            apiUrl = url;
+            BaseUrl = baseUrl;
+            PaymentUrl = paymentUrl;
         }
 
         public async Task<SuccessResponse<PaymentLink>> fetchPaymentLink(PaymentRequest paymentRequest) 
@@ -45,7 +49,7 @@ namespace swirepaysdk.Service
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             try
             {
-                HttpResponseMessage response = await client.PostAsync(apiUrl + "v1/payment-link", content);
+                HttpResponseMessage response = await client.PostAsync(BaseUrl + "v1/payment-link", content);
 
                 if (response != null)
                 {
@@ -69,7 +73,7 @@ namespace swirepaysdk.Service
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("x-api-key", apiKey);
 
-            HttpResponseMessage response = await client.GetAsync(apiUrl + "v1/payment-link/" + paymentLinkGid);
+            HttpResponseMessage response = await client.GetAsync(BaseUrl + "v1/payment-link/" + paymentLinkGid);
 
             if (response != null)
             {
@@ -88,7 +92,7 @@ namespace swirepaysdk.Service
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("x-api-key", apiKey);
 
-            HttpResponseMessage response = await client.GetAsync(apiUrl + "v1/setup-session/" + setupId);
+            HttpResponseMessage response = await client.GetAsync(BaseUrl + "v1/setup-session/" + setupId);
 
             if (response != null)
             {
@@ -106,7 +110,7 @@ namespace swirepaysdk.Service
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("x-api-key", apiKey);
 
-            HttpResponseMessage response = await client.GetAsync(apiUrl + "v1/invoice-link/" + invoiceGid);
+            HttpResponseMessage response = await client.GetAsync(BaseUrl + "v1/invoice-link/" + invoiceGid);
 
             if (response != null)
             {
@@ -116,7 +120,8 @@ namespace swirepaysdk.Service
             return null;
         }
 
-        public async Task<SuccessResponse<SubscriptionButton>> createPlan(PlanRequest planRequest)
+        public async Task<SuccessResponse<SubscriptionButton>> createPlan(PlanRequest planRequest,int quantity, string totalPayments,string startDate,string couponGid,
+            List<string> taxRates)
         {
             if (String.IsNullOrEmpty(apiKey))
                 throw new KeyNotInitializedException();
@@ -128,7 +133,7 @@ namespace swirepaysdk.Service
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             try
             {
-                HttpResponseMessage response = await client.PostAsync(apiUrl + "v1/plan", content);
+                HttpResponseMessage response = await client.PostAsync(BaseUrl + "v1/plan", content);
 
                 if (response != null)
                 {
@@ -139,21 +144,21 @@ namespace swirepaysdk.Service
                     if (successResponse.responseCode == 200)
                     {
                         SubscriptionButtonRequest subscriptionButtonRequest = new SubscriptionButtonRequest();
-                        //subscriptionButtonRequest.couponGid = "coupon-95eaecf56e514b3d98e59397f81d7645";
-                        subscriptionButtonRequest.currencyCode = "USD";
-                        subscriptionButtonRequest.description = "Test description";
-                        subscriptionButtonRequest.name = "USD";
+                        subscriptionButtonRequest.currencyCode = plan.currency.name;
+                        subscriptionButtonRequest.description = plan.description;
+                        subscriptionButtonRequest.name = plan.name;
                         subscriptionButtonRequest.planAmount = plan.amount;
-                        subscriptionButtonRequest.planBillingFrequency = "MONTH";
-                        subscriptionButtonRequest.planBillingPeriod = 1;
+                        subscriptionButtonRequest.planBillingFrequency =plan.billingFrequency;
+                        subscriptionButtonRequest.planBillingPeriod = plan.billingPeriod;
                         subscriptionButtonRequest.planGid = plan.gid;
-                        subscriptionButtonRequest.planQuantity = 1;
-                        subscriptionButtonRequest.planStartDate = "2021-09-28T12:00:00";
-                        subscriptionButtonRequest.planTotalPayments = "2";
+                        subscriptionButtonRequest.planQuantity = quantity;
+                        subscriptionButtonRequest.planStartDate = startDate;
+                        subscriptionButtonRequest.planTotalPayments = totalPayments;
+                        subscriptionButtonRequest.couponGid = couponGid;
 
                         //var taxRates = new List<string>();
                         //taxRates.Add("taxrates-8b65b57692cf4a9c94607f0c1d364c39");
-                        //subscriptionButtonRequest.taxRates = taxRates;
+                        subscriptionButtonRequest.taxRates = taxRates;
 
                         return await createSubscriptionButton(subscriptionButtonRequest);
                     }
@@ -178,7 +183,7 @@ namespace swirepaysdk.Service
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             try
             {
-                HttpResponseMessage response = await client.PostAsync(apiUrl + "v1/subscription-button", content);
+                HttpResponseMessage response = await client.PostAsync(BaseUrl + "v1/subscription-button", content);
 
                 if (response != null)
                 {
@@ -204,7 +209,7 @@ namespace swirepaysdk.Service
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("x-api-key", apiKey);
 
-            HttpResponseMessage response = await client.GetAsync(apiUrl + "v1/subscription-button/" + buttonGid);
+            HttpResponseMessage response = await client.GetAsync(BaseUrl + "v1/subscription-button/" + buttonGid);
 
             if (response != null)
             {
@@ -226,7 +231,7 @@ namespace swirepaysdk.Service
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
             try
             {
-                HttpResponseMessage response = await client.PostAsync(apiUrl + "v1/payment-button", content);
+                HttpResponseMessage response = await client.PostAsync(BaseUrl + "v1/payment-button", content);
 
                 if (response != null)
                 {
@@ -253,7 +258,7 @@ namespace swirepaysdk.Service
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("x-api-key", apiKey);
 
-            HttpResponseMessage response = await client.GetAsync(apiUrl + "v1/payment-button/" + buttonGid);
+            HttpResponseMessage response = await client.GetAsync(BaseUrl + "v1/payment-button/" + buttonGid);
 
             if (response != null)
             {
@@ -263,6 +268,27 @@ namespace swirepaysdk.Service
             return null;
         }
 
+        public string GetCreateAccountUrl(string apiKey)
+        {
+            string url = PaymentUrl + "connect?key=" + Convert.ToBase64String(Encoding.ASCII.GetBytes(apiKey));
+
+            return url;
+        }
+        
+        public string GetPaymentMethodUrl(string apiKey)
+        {
+            string url = PaymentUrl + "setup-session?key=" + Convert.ToBase64String(Encoding.ASCII.GetBytes(apiKey));
+
+            return url;
+        }
+        
+        public string GetInvoiceUrl(string invoiceGid)
+        {
+            string url = PaymentUrl + "invoice-link/" + invoiceGid;
+
+            return url;
+        }
+
         //public async Task<SuccessResponse<PaymentLink>> fetchPaymentLink(PaymentRequest paymentRequest, string apikey)
         //{
         //    try
@@ -270,7 +296,6 @@ namespace swirepaysdk.Service
         //        var apiCall = RestService.For<IApiInterface>(Constants.stagingUrl);
         //        SuccessResponse<PaymentLink> successResponse = await apiCall.fetchPaymentLink(paymentRequest, apikey);
         //        return successResponse;
-
         //    }
         //    catch (Exception e)
         //    {

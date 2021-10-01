@@ -40,9 +40,14 @@ namespace swirepaysdk.Droid.Views
             planRequest.description = "Test description";
             planRequest.name = "Test";
 
+            int quantity = 1;
+            string totalPayments = "3";
+            string couponGid = "";
+            List<string> taxRates = new List<string>();
+
             try
             {
-                var result = await swirepaysdk.createPlan(planRequest);
+                var result = await swirepaysdk.createPlan(planRequest,quantity,totalPayments,null,null,null);
                 SubscriptionButton subscription = (SubscriptionButton)Convert.ChangeType(result.entity, typeof(SubscriptionButton));
 
                 BaseActivity<Redirect>.param_id = "sp-subscription-button";

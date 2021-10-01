@@ -7,6 +7,9 @@
 node_modules/
 dist/
 
+#nuget package
+*.nupkg
+
 # Compiled Java class files
 *.class
 
@@ -39,6 +42,10 @@ Thumbs.db
 *.app
 *.exe
 *.war
+*.dll
+*.pdb
+*.cache
+*.suo
 
 # Large media files
 *.mp4
@@ -48,3 +55,12 @@ Thumbs.db
 *.mov
 *.wmv
 
+
+*.vs
+bin/
+obj/
+Debug/
+Release/
+*.opensdf
+*.tlog
+*.log

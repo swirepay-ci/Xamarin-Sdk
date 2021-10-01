@@ -13,4 +13,9 @@ namespace swirepaysdk.Model
     {
         CARD, ACH
     }
+
+    public enum CurrencyType
+    {
+        INR, USD
+    }
 }

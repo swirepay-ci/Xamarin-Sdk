@@ -11,9 +11,13 @@ namespace swirepaysdk.Droid.Views
     [Activity(Label = "PaymentMethodActivity")]
     public class PaymentMethodActivity : BaseActivity<PaymentMethodRedirect>
     {
+        SwirepaySdk swirepaysdk;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
+            swirepaysdk = SwirepaySdk.getInstance();
 
             createPaymentMethod();
         }
@@ -25,7 +29,9 @@ namespace swirepaysdk.Droid.Views
 
             if (!string.IsNullOrEmpty(Constants.apiKey))
             {
-                loadUrl(Constants.paymentUrl + "setup-session?key=" + Base64.EncodeToString(Encoding.ASCII.GetBytes(Constants.apiKey), Base64Flags.Default));
+                string url = swirepaysdk.GetPaymentMethodUrl(Constants.paymentUrl,Constants.apiKey);
+
+                loadUrl(url);
             }
             else
             {

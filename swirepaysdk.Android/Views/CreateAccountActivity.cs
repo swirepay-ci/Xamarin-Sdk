@@ -28,7 +28,9 @@ namespace swirepaysdk.Droid.Views
 
             BaseActivity<AccountRedirect>.param_id = "sp-account-id";
 
-            loadUrl(Constants.paymentUrl+"connect?key="+ Base64.EncodeToString(Encoding.ASCII.GetBytes(Constants.apiKey),Base64Flags.Default));
+            string accountUrl = swirepaysdk.GetCreateAccountUrl(Constants.paymentUrl,Constants.apiKey);
+
+            loadUrl(accountUrl);
         }
     }
 

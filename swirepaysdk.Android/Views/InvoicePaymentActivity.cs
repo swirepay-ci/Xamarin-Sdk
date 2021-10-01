@@ -23,10 +23,13 @@ namespace swirepaysdk.Droid.Views
         private async Task createInvoicePayment()
         {
             BaseActivity<Redirect>.param_id = "sp-invoice-link";
+            string invoiceGid = "invoicelink-02f9c3ade85746a28007d6fe44efdc3a";
 
             if (string.IsNullOrEmpty(Constants.apiKey))
             {
-                loadUrl(Constants.paymentUrl + "invoice-link/" + "invoicelink-02f9c3ade85746a28007d6fe44efdc3a");
+                string url = swirepaysdk.GetInvoiceUrl(Constants.paymentUrl, invoiceGid);
+
+                loadUrl(url);
             }
             else
             {
